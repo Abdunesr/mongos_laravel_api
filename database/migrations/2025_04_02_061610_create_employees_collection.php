@@ -1,30 +1,31 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateEmployeesCollection extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        DB::connection('mongodb')->getCollection('employees')->insert([
-            'emp_name' => '',
+        DB::table('employees')->insert([
+            'emp_name' => 'Initial',
             'dob' => null,
             'phone' => null,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        Schema::connection('mongodb')->table('employees', function ($collection) {
+            $collection->index('emp_name');
+            $collection->unique('phone');
+        });
+
+        DB::table('employees')->where('emp_name', 'Initial')->delete();
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        DB::connection('mongodb')->getCollection('employees')->drop();
+        Schema::connection('mongodb')->dropIfExists('employees');
     }
-};
+}

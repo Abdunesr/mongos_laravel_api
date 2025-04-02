@@ -140,8 +140,9 @@ return [
     'providers' => [
         /*
          * Laravel Framework Service Providers...
-         */
-        MongoDB\Laravel\MongoDBServiceProvider::class,
+         */ 
+        Illuminate\Translation\TranslationServiceProvider::class,
+    MongoDB\Laravel\MongoDBServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
