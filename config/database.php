@@ -30,6 +30,11 @@ return [
     */
 
     'connections' => [
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn' => env('MONGODB_URI', 'mongodb://localhost:27017'),
+            'database' => env('MONGODB_DATABASE', 'laravel_app'),
+        ],
 
         'sqlite' => [
             'driver' => 'sqlite',
@@ -41,11 +46,7 @@ return [
             'journal_mode' => null,
             'synchronous' => null,
         ],
-       'mongodb' => [
-    'driver' => 'mongodb',
-    'dsn' => env('DB_URI', 'mongodb://localhost:27017'),
-    'database' => env('DB_DATABASE', 'employee_db'),
-],
+     
 
         'mysql' => [
             'driver' => 'mysql',
